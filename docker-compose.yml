@@ -1,0 +1,56 @@
+version: "3.9"
+
+services:
+  frontend:
+    build: ./frontend
+    container_name: mini_libary-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm start
+    stdin_open: true        # giữ React dev server chạy
+    tty: true
+    environment:
+      - WATCHPACK_POLLING=true   # fix hot reload trong Docker
+
+  backend:
+    build: ./backend
+    container_name: mini_libary-backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm run dev          # chạy với nodemon để hot reload
+    environment:
+      PORT: 5000
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: user
+      DB_PASSWORD: password
+      DB_NAME: mini_libary
+
+  db:
+    image: mysql:8.0
+    container_name: mini_libary-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mini_libary
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3308:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:

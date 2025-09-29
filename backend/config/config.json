@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "user",
+    "password": "password",
+    "database": "mini_libary",
+    "host": "db",
+    "port": 3306,
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "user",
+    "password": "password",
+    "database": "mini_libary_test",
+    "host": "db",
+    "port": 3306,
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "user",
+    "password": "password",
+    "database": "mini_libary_prod",
+    "host": "db",
+    "port": 3306,
+    "dialect": "mysql"
+  }
+}

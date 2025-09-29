@@ -1,0 +1,16 @@
+FROM node:18
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+# cho CRA dev server lắng nghe bên ngoài container
+ENV HOST=0.0.0.0
+ENV CHOKIDAR_USEPOLLING=true
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
