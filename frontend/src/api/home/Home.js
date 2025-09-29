@@ -41,7 +41,7 @@ function Home() {
           textShadow: "2px 2px 8px rgba(0,0,0,0.6)",
         }}
       >
-        📚 Quản lý Thư viện
+         Quản lý Thư viện
       </h1>
       <p
         style={{
